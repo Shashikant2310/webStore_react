@@ -1,17 +1,18 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [showList, setShowList] = useState(false);
   return (
     <div>
-      <header class="bg-white">
-        <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <div class="flex h-16 items-center justify-between">
-            <div class="flex-1 md:flex md:items-center md:gap-12">
-              <a class="block text-teal-600" href="/">
-                <span class="sr-only">Home</span>
+      <header className="bg-white">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex-1 md:flex md:items-center md:gap-12">
+              <Link to="/" className="block text-teal-600">
+                <span className="sr-only">Home</span>
                 <svg
-                  class="h-8"
+                  className="h-8"
                   viewBox="0 0 28 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -21,64 +22,41 @@ const Header = () => {
                     fill="currentColor"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
-
-            <div class="md:flex md:items-center md:gap-12">
-              <nav aria-label="Global" class="hidden md:block">
-                <ul class="flex items-center gap-6 text-base font-medium">
+            <div className="md:flex md:items-center md:gap-12">
+              <nav aria-label="Global" className="hidden md:block">
+                <ul className="flex items-center gap-6 text-base font-semibold">
                   <li>
-                    <a
-                      class="transition text-blue-500 hover:text-gray-500/75"
-                      href="/"
-                    >
+                    <Link to="/" className="transition text-blue-500">
                       Home
-                    </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/products"
+                      className="text-gray-500 transition hover:text-blue-500"
+                    >
+                      Products
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="/"
+                    <Link
+                      to="/about"
+                      className="text-gray-500 transition hover:text-blue-500"
                     >
-                      Careers
-                    </a>
+                      About
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="/"
+                    <Link
+                      to="/cart"
+                      className="text-gray-500 transition hover:text-blue-500"
                     >
-                      History
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="/"
-                    >
-                      Services
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="/"
-                    >
-                      Projects
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="/"
-                    >
-                      Blog
-                    </a>
+                      Cart
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -139,20 +117,20 @@ const Header = () => {
                     </ul>
                   </div>
                 )}
-                <div class="flex items-center gap-4">
-                  <div class="block md:hidden">
-                    <button class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                <div className="flex items-center gap-4">
+                  <div className="block md:hidden">
+                    <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
+                        className="h-5 w-5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        stroke-width="2"
+                        strokeWidth="2"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M4 6h16M4 12h16M4 18h16"
                         />
                       </svg>
