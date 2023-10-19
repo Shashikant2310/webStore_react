@@ -21,19 +21,19 @@ const Hero = () => {
         interval={3000}
       >
         <div className="">
-          <img priority="true" src={banner1} alt="banner image" />
+          <img priority="true" src={banner1} alt="banner " />
         </div>
         <div>
-          <img src={banner2} alt="banner image" />
+          <img src={banner2} alt="banner" />
         </div>
         <div>
-          <img src={banner3} alt="banner image" />
+          <img src={banner3} alt="banner " />
         </div>
         <div>
-          <img src={banner4} alt="banner image" />
+          <img src={banner4} alt="banner " />
         </div>
         <div>
-          <img src={banner5} alt="banner image" />
+          <img src={banner5} alt="banner " />
         </div>
       </Carousel>
     </div>
