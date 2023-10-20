@@ -1,21 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/webstoreSlice";
 
 const Products = () => {
+  const [products, setProducts] = useState([]);
   const data = useLoaderData();
-  const ProductsData = data.data;
   const dispatch = useDispatch();
+
+  const _id = products.map((item) => item.title);
+  console.log(_id);
+  const id_String = (_id) => {
+    return String(_id).toLowerCase().split(" ").join("");
+  };
+  const rootId = id_String(_id);
+  console.log(rootId);
+
+  function handleDetails() {}
+  useEffect(() => {
+    setProducts(data.data);
+  }, [data]);
+
+  function handleDetails() {}
   return (
     <div>
       <div className=" relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12 md:-mt-24 mx-auto px-8">
-        {ProductsData.map((item) => (
+        {products.map((item) => (
           <div
             key={item._id}
             className="group my-5 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-300 hover:shadow-lg duration-300 bg-white shadow-md"
           >
-            <div className="mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
+            <div
+              onClick={handleDetails}
+              className="mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
+            >
               <img
                 className="h-full w-full object-cover"
                 src={item.image}

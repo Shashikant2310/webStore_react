@@ -1,11 +1,32 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getAuth, signOut } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../../redux/webstoreSlice";
 
 const Header = () => {
   const [showList, setShowList] = useState(false);
   const ProductsData = useSelector((state) => state.webStore.productsData);
-  console.log(ProductsData);
+  const userInfo = useSelector((state) => state.webStore.webstoreUserInfo);
+  const auth = getAuth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function handleSignOut(e) {
+    e.preventDefault();
+
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        dispatch(removeUser());
+        navigate("/signin");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error);
+      });
+  }
   return (
     <header className="bg-white sticky w-full top-0 z-50">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -62,8 +83,12 @@ const Header = () => {
               <img
                 onClick={() => setShowList((prev) => !prev)}
                 className="w-8 h-8 object-cover rounded-full cursor-pointer"
-                src="https://img.freepik.com/free-photo/beautiful-girl-stands-park_8353-5084.jpg?size=626&ext=jpg&ga=GA1.2.170810855.1697271095&semt=ais"
-                alt="girl"
+                src={
+                  userInfo
+                    ? userInfo.profile
+                    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                }
+                alt="profile"
               />
               {/* Dropdown start */}
               {showList && (
@@ -73,10 +98,10 @@ const Header = () => {
                 >
                   <div className="px-4 py-3">
                     <span className="block text-sm text-gray-900 dark:text-white">
-                      Bonnie Green
+                      {userInfo ? userInfo.userName : ""}
                     </span>
                     <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                      name@flowbite.com
+                      {userInfo ? userInfo.email : ""}
                     </span>
                   </div>
                   <ul className="py-2" aria-labelledby="user-menu-button">
@@ -104,13 +129,16 @@ const Header = () => {
                         Earnings
                       </a>
                     </li>
-                    <li>
-                      <Link
-                        to="/sigin"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        Sign out
-                      </Link>
+                    <li className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                      {userInfo ? (
+                        <p onClick={handleSignOut} className="h-full">
+                          Sign out
+                        </p>
+                      ) : (
+                        <Link to="/signin">
+                          <p className="h-full">Sign in</p>
+                        </Link>
+                      )}
                     </li>
                   </ul>
                 </div>

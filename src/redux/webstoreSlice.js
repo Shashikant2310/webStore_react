@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   productsData: [],
+  webstoreUserInfo: null,
 };
 
 export const webstoreSlice = createSlice({
@@ -44,6 +45,12 @@ export const webstoreSlice = createSlice({
     clearCart: (state) => {
       state.productsData = [];
     },
+    signInUser: (state, action) => {
+      state.webstoreUserInfo = action.payload;
+    },
+    removeUser: (state) => {
+      state.webstoreUserInfo = null;
+    },
   },
 });
 
@@ -53,6 +60,8 @@ export const {
   decreseQuantity,
   deleteItem,
   clearCart,
+  signInUser,
+  removeUser,
 } = webstoreSlice.actions;
 
 export default webstoreSlice.reducer;
