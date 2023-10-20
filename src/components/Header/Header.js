@@ -7,6 +7,8 @@ import { removeUser } from "../../redux/webstoreSlice";
 
 const Header = () => {
   const [showList, setShowList] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
   const ProductsData = useSelector((state) => state.webStore.productsData);
   const userInfo = useSelector((state) => state.webStore.webstoreUserInfo);
   const auth = getAuth();
@@ -93,7 +95,7 @@ const Header = () => {
               {/* Dropdown start */}
               {showList && (
                 <div
-                  className="z-50 fixed top-10 right-8 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                  className="z-50 fixed top-10 right-2 md:right-8 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                   id="user-dropdown"
                 >
                   <div className="px-4 py-3">
@@ -145,7 +147,10 @@ const Header = () => {
               )}
               <div className="flex items-center gap-4">
                 <div className="block md:hidden">
-                  <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                  <button
+                    onClick={() => setShowMenu((prev) => !prev)}
+                    className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5"
@@ -163,6 +168,28 @@ const Header = () => {
                   </button>
                 </div>
               </div>
+              {showMenu && (
+                <div className="z-50 fixed top-10 right-14 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+                  <ul className="py-2" aria-labelledby="user-menu-button">
+                    <li>
+                      <Link
+                        to="/"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/cart"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >
+                        Cart
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>

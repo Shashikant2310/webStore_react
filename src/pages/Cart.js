@@ -21,28 +21,35 @@ const Cart = () => {
   return (
     <div>
       <div className=" h-auto py-8">
-        <div className="container mx-auto px-4">
+        <div className=" max-w-full w-[1200px] mx-auto px-4">
           <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
           {productData.length > 0 ? (
             <div className="flex flex-col md:flex-row gap-4">
               <div className="md:w-3/4">
                 <div className="bg-white rounded-lg shadow-md p-6 mb-4">
                   <table className="w-full">
-                    <thead>
-                      <tr>
-                        <th className="text-left font-semibold">Product</th>
-                        <th className="text-left font-semibold">Price</th>
-                        <th className="text-left font-semibold">Quantity</th>
-                        <th className="text-left font-semibold">Total</th>
+                    <thead className=" hidden md:block">
+                      <tr className="flex justify-between">
+                        <th className=" md:w-2/5 text-left font-semibold">
+                          Product
+                        </th>
+                        <th className=" w-3/5 flex justify-around">
+                          <th className="text-left font-semibold">Price</th>
+                          <th className="text-left font-semibold">Quantity</th>
+                          <th className="text-left font-semibold">Total</th>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {productData.map((item) => (
-                        <tr key={item.id}>
-                          <td className="py-4">
+                        <tr
+                          key={item.id}
+                          className=" flex flex-col md:flex-row justify-between"
+                        >
+                          <td className="py-4 w-full md:w-2/5">
                             <div className="flex items-center">
                               <img
-                                className="w-28 mr-4 object-cover"
+                                className=" w-16 h-20 md:w-28 md:h-36 mr-4 object-cover"
                                 src={item.img_url}
                                 alt="Product"
                               />
@@ -57,32 +64,36 @@ const Cart = () => {
                               </div>
                             </div>
                           </td>
-                          <td className="py-4">${item.price}</td>
-                          <td className="py-4">
-                            <div className="flex items-center">
-                              <button
-                                onClick={() =>
-                                  dispatch(decreseQuantity(item.id))
-                                }
-                                className="border rounded-md py-2 px-4 mr-2"
-                              >
-                                -
-                              </button>
-                              <span className="text-center w-8">
-                                {item.quantity}
-                              </span>
-                              <button
-                                onClick={() =>
-                                  dispatch(increseQuantity(item.id))
-                                }
-                                className="border rounded-md py-2 px-4 ml-2"
-                              >
-                                +
-                              </button>
+                          <td className="w-full md:w-3/5 flex justify-around items-center">
+                            <div>
+                              <td className="py-4">${item.price}</td>
                             </div>
-                          </td>
-                          <td className="py-4">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            <td className="py-4">
+                              <div className="flex items-center">
+                                <button
+                                  onClick={() =>
+                                    dispatch(decreseQuantity(item.id))
+                                  }
+                                  className="border rounded-md py-2 px-4 mr-2"
+                                >
+                                  -
+                                </button>
+                                <span className="text-center w-8">
+                                  {item.quantity}
+                                </span>
+                                <button
+                                  onClick={() =>
+                                    dispatch(increseQuantity(item.id))
+                                  }
+                                  className="border rounded-md py-2 px-4 ml-2"
+                                >
+                                  +
+                                </button>
+                              </div>
+                            </td>
+                            <td className="py-4">
+                              ${(item.price * item.quantity).toFixed(2)}
+                            </td>
                           </td>
                         </tr>
                       ))}

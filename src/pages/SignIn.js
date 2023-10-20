@@ -33,7 +33,7 @@ const SignIn = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="flex flex-col items-center gap-8 w-3/5 md:w-4/12 p-12 shadow-lg border border-gray-200">
+      <div className="flex flex-col items-center gap-8 w-full md:w-4/12 p-12 shadow-lg border border-gray-200">
         <h1 className="text-3xl mb-10">Login</h1>
         <div>
           <button
