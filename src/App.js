@@ -11,6 +11,7 @@ import { productData } from "./api/api";
 import Cart from "./pages/Cart";
 import SignIn from "./pages/SignIn";
 import Product from "./components/Home/Product";
+import Products from "./components/Home/Products";
 
 const Layer = () => {
   return (
@@ -35,6 +36,11 @@ export default function App() {
           loader: productData,
         },
         {
+          path: "/products",
+          element: <Products />,
+          loader: productData,
+        },
+        {
           path: "/product/:id",
           element: <Product />,
         },
@@ -50,7 +56,7 @@ export default function App() {
     },
   ]);
   return (
-    <div className=" bg-gray-50">
+    <div className="bg-gray-50 font-bodyFont">
       <RouterProvider router={router} />
     </div>
   );

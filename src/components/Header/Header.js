@@ -56,7 +56,7 @@ const Header = () => {
                   <li>Home</li>
                 </Link>
                 <Link
-                  to="/"
+                  to="/products"
                   className="text-gray-500 transition hover:text-blue-500"
                 >
                   <li>Products</li>
@@ -73,7 +73,7 @@ const Header = () => {
                   <li className="text-gray-500 relative  h-10 w-10 flex items-center transition hover:text-blue-500">
                     <p>Cart</p>
                     {ProductsData.length >= 1 && (
-                      <p className="font-bold flex items-center absolute top-0 right-1 text-teal-600 ">
+                      <p className="font-bold flex items-center absolute -top-[2px] -right-[2px] text-teal-600 ">
                         {ProductsData.length}
                       </p>
                     )}

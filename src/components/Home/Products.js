@@ -12,7 +12,7 @@ const Products = () => {
   }, [data]);
   return (
     <div>
-      <div className=" relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12 md:-mt-24 mx-auto px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12 my-12 mx-auto px-8">
         {products.map((item) => (
           <ProductsCard key={item._id} product={item} />
         ))}
